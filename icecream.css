@@ -1,0 +1,32 @@
+/*VISIBILITY*/
+#startpage {
+	visibility: visible;
+}
+#conorcup {
+	visibility: hidden;
+}
+#scoops {
+	visibility: hidden;
+}
+#sauce {
+	visibility: hidden;
+}
+#toppings {
+	visibility: hidden;
+}
+#confirm {
+	visibility: hidden;
+}
+#cart {
+	visibility: hidden;
+}
+#thanks {
+	visibility: hidden;
+}
+/*STARTPAGE*/
+/*CONEORCUP*/
+/*SCOOPS*/
+/*TOPPINGS*/
+/*CONFIRM*/
+/*CART*/
+/*THANKS*/
