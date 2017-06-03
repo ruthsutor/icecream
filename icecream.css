@@ -2,28 +2,63 @@
 #startpage {
 	visibility: visible;
 }
-#conorcup {
+
+#coneorcup {
 	visibility: hidden;
 }
-#scoops {
+
+#decisions {
 	visibility: hidden;
 }
-#sauce {
-	visibility: hidden;
-}
-#toppings {
-	visibility: hidden;
-}
-#confirm {
-	visibility: hidden;
-}
+
 #cart {
 	visibility: hidden;
 }
+
 #thanks {
 	visibility: hidden;
 }
+
+#data {
+	visibility: hidden;
+}
+
+#startpage, #coneorcup, #decisions, #cart, #data, #thanks {
+	top: 200px;
+	width: 800px;
+	position: absolute;
+	left: -400px;
+	margin-left: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+fieldset {
+	width: 250px;
+}
+
+#price {
+	visibility: hidden;
+	bottom: 0px;
+	width: 800px;
+	position: absolute;
+	left: -400px;
+	margin-left: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border: 2px;
+	border-style: solid none none none;
+}
+
+h1 {
+	font-size: 15pt;
+}
 /*STARTPAGE*/
+#neworder {
+	
+}
 /*CONEORCUP*/
 /*SCOOPS*/
 /*TOPPINGS*/

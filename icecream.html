@@ -4,31 +4,70 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" href="icecream.css">
 <script type="text/javascript" src="dynamik.js"></script>
+<script type="text/javascript" src="inputs.js"></script>
+<script type="text/javascript" src="classorder.js"></script>
 <title>the icecream shop</title>
 </head>
 <header>
-	<img id="logo" src="images/logo.jpg"> <img id="cartbutton"
-		src="images/cart.jpg">
+	<img id="logo" src="images/logo.jpg"> 
 </header>
 <body>
+<!-- STARTPAGE -->
 	<div id="startpage">
-		<button type="button" id="neworder">new order</button>
+		<button type="button" id="neworder">NEW ORDER</button>
 	</div>
 	<div id="coneorcup">
-	    <div id="cone">
-		<img class="corc" src="images/cone.jpg"> 
-		<p>cone</p>
-		</div>
-		<div id="cup">
-		<img class="corc" src="images/cup.jpg">
-		<p>cup</p>
-		</div>
+		<img id="cone" src="images/cone.jpg"> 
+		<img id="cup" src="images/cup.jpg">
 	</div>
-	<div id="scoops"></div>
-	<div id="sauce"></div>
-	<div id="toppings"></div>
-	<div id="confirm"></div>
-	<div id="cart"></div>
-	<div id="thanks"></div>
+<!-- DECISIONS -->
+    <div id="decisions">	
+	<fieldset>
+	    <legend>SCOOPS</legend>
+    </fieldset>
+    <fieldset>
+	    <legend>SAUCE</legend>
+    </fieldset>
+    <fieldset>
+	    <legend>TOPPINGS</legend>
+    </fieldset>
+    </div>
+    <div id="price">
+	<h1>Scoops </h1>
+	<p id="scoopprice">0.00€</p>
+	<h1>Sauce</h1>
+	<p id="sauceprice">0.00€</p>
+	<h1>Toppings</h1>
+	<p id="toppingprice">0.00€</p>
+	<h1>Sum</h1>
+	<p id="sum">0.00€</p>
+	</div>
+<!-- CART -->
+	<div id="cart">
+	<div id="orders"></div>
+	<button id="anotherorder">ANOTHER ORDER</button>
+	<button id="buy">BUY NOW</button>
+	</div>
+<!-- CUSTOMER DATA -->
+	<div id="data">
+	<fieldset>
+	    <legend>CUSTOMER DATA</legend>
+		<input type="text" name="firstname" placeholder="Firstname" required id="firstname"/>
+		<input type="text" name="lastname" placeholder="Lastname" required id="lastname"/>
+		<input type="email" name="email" placeholder="Email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="email"/>
+		<input type="text" name="street" placeholder="Streetname" required id="street"/>
+		<input type="text" name="streetnumber" pattern="[0-9]" placeholder="streetnumber" required id="streetnumber"/>
+		<input type="text" name="postcode" pattern="[0-9]{5}" placeholder="postcode" required id="postcode"/>
+        <input type="radio" name="group1" checked value="express" id="express"/>
+		<label for="express">Express Delivery (1 day)</label>
+		<input type="radio" name="group1" value="standard" id="standard"/>
+		<label for="standard">Standard Delivery (2-3 days)</label>
+    </fieldset>
+    <button id="commit">COMMIT TO BUY</button>
+	</div>
+<!-- THANKS -->
+	<div id="thanks">
+	<p>Thanks for your order!</p>
+	</div>
 </body>
 </html>
