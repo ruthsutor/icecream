@@ -118,12 +118,12 @@ namespace icecream {
         let alltoppings: string = "";
         for (let i: number = 0; i < sortinputs.length; i++) {
             if (selectedsorts[i] > 0) {
-                allscoops += + " //" + selectedsorts[i] + " " + sorts[i];
+                allscoops += + selectedsorts[i] + " " + sorts[i] + ", ";
             }
         }
         for (let i: number = 0; i < toppinginputs.length; i++) {
             if (toppinginputs[i].checked) {
-                alltoppings += +" //" + toppinginputs[i].value;
+                alltoppings += toppinginputs[i].value + ", ";
             }
         }
         orders[ordercount].scoops = allscoops;

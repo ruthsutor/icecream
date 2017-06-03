@@ -118,12 +118,12 @@ var icecream;
         let alltoppings = "";
         for (let i = 0; i < icecream.sortinputs.length; i++) {
             if (icecream.selectedsorts[i] > 0) {
-                allscoops += +" //" + icecream.selectedsorts[i] + " " + icecream.sorts[i];
+                allscoops += +icecream.selectedsorts[i] + " " + icecream.sorts[i] + ", ";
             }
         }
         for (let i = 0; i < icecream.toppinginputs.length; i++) {
             if (icecream.toppinginputs[i].checked) {
-                alltoppings += +" //" + icecream.toppinginputs[i].value;
+                alltoppings += icecream.toppinginputs[i].value + ", ";
             }
         }
         orders[icecream.ordercount].scoops = allscoops;
