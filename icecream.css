@@ -35,10 +35,14 @@
 }
 
 fieldset {
-	width: 250px;
+	width : 230px;
+}
+input{
+	display: block;
 }
 
 #price {
+	backgroundcolor: #ffffff;
 	visibility: hidden;
 	bottom: 0px;
 	width: 800px;
@@ -48,20 +52,58 @@ fieldset {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 2px;
+	border: 4px;
 	border-style: solid none none none;
 }
 
-h1 {
-	font-size: 15pt;
+h1, legend, #thanks{
+	font-family: 'Amatic SC', cursive;
+	font-size: 25pt;
+	color:#00e68a;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+button {
+	font-family: 'Amatic SC', cursive;
+    background-color: #ffffff; 
+    border: solid;
+    color: #000000;
+    padding: 5px 9px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 25px;
 }
 /*STARTPAGE*/
-#neworder {
-	
+#header{
+	font-family: 'Montserrat', sans-serif;
+	color:#ffcce6;
+	font-size: 50pt;
+}
+#neworder{
+	padding: 10px 16px;
+	font-size: 40px;
 }
 /*CONEORCUP*/
-/*SCOOPS*/
-/*TOPPINGS*/
-/*CONFIRM*/
+#cup{
+	width: 170px;
+}
+#choose{
+    padding-right: 30px;
+    color: #000000;
+}
+/*DECISIONS*/
+#confirm{
+	position: absolute;
+	bottom: 0px;
+}
 /*CART*/
+#buttons, #commit{
+	position:absolute;
+	bottom: -60px;
+}
+#anotherorder{
+	margin-right: 20px;
+}
 /*THANKS*/

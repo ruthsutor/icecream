@@ -19,12 +19,7 @@ var icecream;
         for (let i = 0; i < icecream.toppings.length; i++) {
             createToppingsInput(icecream.toppings[i]);
         }
-        let confirm = document.createElement("button");
-        confirm.innerText = "CONFIRM";
-        let decisions = document.getElementById("decisions");
-        confirm.id = "confirm";
-        decisions.appendChild(confirm);
-        confirm.addEventListener("click", icecream.openCart);
+        document.getElementById("confirm").addEventListener("click", icecream.openCart);
     }
     icecream.createInputs = createInputs;
     function createSortsInput(_sort) {

@@ -18,12 +18,7 @@ namespace icecream {
         for (let i: number = 0; i < toppings.length; i++) {
             createToppingsInput(toppings[i]);
         }
-        let confirm: HTMLButtonElement = document.createElement("button");
-        confirm.innerText = "CONFIRM";
-        let decisions: HTMLElement = document.getElementById("decisions");
-        confirm.id = "confirm";
-        decisions.appendChild(confirm);
-        confirm.addEventListener("click", openCart);
+        document.getElementById("confirm").addEventListener("click", openCart);
     }
     function createSortsInput(_sort: string): void {
         let label: HTMLLabelElement = document.createElement("label");

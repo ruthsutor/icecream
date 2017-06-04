@@ -2,6 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Montserrat:900" rel="stylesheet"> 
 <link rel="stylesheet" href="icecream.css">
 <script type="text/javascript" src="dynamik.js"></script>
 <script type="text/javascript" src="inputs.js"></script>
@@ -9,7 +10,7 @@
 <title>the icecream shop</title>
 </head>
 <header>
-	<img id="logo" src="images/logo.jpg"> 
+	<h1 id="header">The Icecream Shop</h1>
 </header>
 <body>
 <!-- STARTPAGE -->
@@ -17,8 +18,9 @@
 		<button type="button" id="neworder">NEW ORDER</button>
 	</div>
 	<div id="coneorcup">
-		<img id="cone" src="images/cone.jpg"> 
-		<img id="cup" src="images/cup.jpg">
+		<img id="cone" src="images/cone.png"> 
+		<h1 id="choose">CHOOSE</h1>
+		<img id="cup" src="images/cup.png">
 	</div>
 <!-- DECISIONS -->
     <div id="decisions">	
@@ -31,6 +33,7 @@
     <fieldset>
 	    <legend>TOPPINGS</legend>
     </fieldset>
+    <button type="button" id="confirm">CONFIRM</button>
     </div>
     <div id="price">
 	<h1>Scoops </h1>
@@ -45,8 +48,10 @@
 <!-- CART -->
 	<div id="cart">
 	<div id="orders"></div>
+	<div id="buttons">
 	<button id="anotherorder">ANOTHER ORDER</button>
 	<button id="buy">BUY NOW</button>
+	</div>
 	</div>
 <!-- CUSTOMER DATA -->
 	<div id="data">
@@ -56,7 +61,7 @@
 		<input type="text" name="lastname" placeholder="Lastname" required id="lastname"/>
 		<input type="email" name="email" placeholder="Email" required pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" id="email"/>
 		<input type="text" name="street" placeholder="Streetname" required id="street"/>
-		<input type="text" name="streetnumber" pattern="[0-9]" placeholder="streetnumber" required id="streetnumber"/>
+		<input type="text" name="streetnumber" pattern="[0-9]{.1}" placeholder="streetnumber" required id="streetnumber"/>
 		<input type="text" name="postcode" pattern="[0-9]{5}" placeholder="postcode" required id="postcode"/>
         <input type="radio" name="group1" checked value="express" id="express"/>
 		<label for="express">Express Delivery (1 day)</label>
