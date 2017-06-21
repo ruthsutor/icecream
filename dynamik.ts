@@ -10,7 +10,7 @@ nicht kopiert und auch nicht diktiert.
 namespace icecream {
     let pages: HTMLElement[] = [];
     let currentpage: number;
-    let orders: Order[] = [];
+    export let orders: Order[] = [];
     export let sorts: string[] = ["Vanilla", "Chocolate", "Yoghurt", "Coconut", "Cookies", "Strawberry", "Raspberry", "Peanutbutter", "Salted Caramel", "Pistachio"];
     export let sauces: string[] = ["None", "Chocolate", "Strawberry", "Caramel"];
     export let toppings: string[] = ["Chocolate Chips", "Cookie Crumples", "Whipped Cream", "Strawberrys", "Smarties"];
@@ -43,7 +43,7 @@ namespace icecream {
     }
     function createNewOrder(): void {
         ordercount += 1;
-        let order: Order = new Order();
+        let order: Order = { ordernumber: ordercount, container: "", scoops: [], sauce: "", toppings: "", price: 0 };
         orders.push(order);
     }
     function chooseContainer(_event: Event): void {
@@ -111,14 +111,53 @@ namespace icecream {
         nextPage();
         document.getElementById("price").style.visibility = "hidden";
         saveOrder();
-        orders[ordercount].createDiv();
+        createDiv(orders[ordercount]);
     }
+
+    function createDiv(_order: Order): void {
+        let scoopstring: string = "";
+        for (let i: number = 0; i < _order.scoops.length; i++) {
+            if (i > 0) {
+                scoopstring += " / " + _order.scoops[i].name + ": " + _order.scoops[i].amount;
+            }
+            else {
+                scoopstring += + _order.scoops[i].name + ": " + _order.scoops[i].amount;
+            }
+        }
+        let div: HTMLElement = document.createElement("div");
+        let h: HTMLElement = document.createElement("h1");
+        h.innerText = "Order " + (_order.ordernumber + 1);
+        div.appendChild(h);
+        let coc: HTMLElement = document.createElement("p");
+        coc.innerText = "Container: " + _order.container;
+        div.appendChild(coc);
+        let scoop: HTMLElement = document.createElement("p");
+        scoop.innerText = "Scoops: " + scoopstring;
+        div.appendChild(scoop);
+        let sauce: HTMLElement = document.createElement("p");
+        sauce.innerText = "Sauce: " + _order.sauce;
+        div.appendChild(sauce);
+        let toppings: HTMLElement = document.createElement("p");
+        toppings.innerText = "Toppings: " + _order.toppings;
+        div.appendChild(toppings);
+        let price: HTMLElement = document.createElement("p");
+        if (this.sauce == "None") {
+            price.innerText = "Price: " + _order.price + ".00€";
+        }
+        else {
+            price.innerText = "Price: " + _order.price + "0€";
+        }
+        div.appendChild(price);
+        document.getElementById("orders").appendChild(div);
+
+    }
+
     function saveOrder(): void {
         let allscoops: string = "";
         let alltoppings: string = "";
         for (let i: number = 0; i < sortinputs.length; i++) {
             if (selectedsorts[i] > 0) {
-                allscoops += + selectedsorts[i] + " " + sorts[i] + ", ";
+                orders[ordercount].scoops.push({ name: sorts[i], amount: selectedsorts[i] });
             }
         }
         for (let i: number = 0; i < toppinginputs.length; i++) {
@@ -126,7 +165,7 @@ namespace icecream {
                 alltoppings += toppinginputs[i].value + ", ";
             }
         }
-        orders[ordercount].scoops = allscoops;
+
         orders[ordercount].toppings = alltoppings;
     }
     function checkValidity(): void {
@@ -155,11 +194,27 @@ namespace icecream {
         else {
             alert("Your inputs on " + notvalid + " are not valid. Please check again!");
         }
+
+        gotoServerPage();
     }
     function nextPage(): void {
         pages[currentpage].style.visibility = "hidden";
         pages[currentpage + 1].style.visibility = "visible";
         currentpage += 1;
+    }
+
+    function gotoServerPage(): void {
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:8100", true);
+        xhr.addEventListener("readystatechange", onStateChange);
+        xhr.send(JSON.stringify(orders));
+    }
+
+    function onStateChange(_event: Event): void {
+        let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            xhr.responseText;
+        }
     }
     function createPagesArray(): void {
         pages[0] = document.getElementById("startpage");

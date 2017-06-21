@@ -52,8 +52,6 @@ input{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	border: 4px;
-	border-style: solid none none none;
 }
 
 h1, legend, #thanks{
@@ -67,7 +65,7 @@ h1, legend, #thanks{
 button {
 	font-family: 'Amatic SC', cursive;
     background-color: #ffffff; 
-    border: solid;
+    border: solid 1pt;
     color: #000000;
     padding: 5px 9px;
     text-align: center;

@@ -11,7 +11,7 @@ var icecream;
 (function (icecream) {
     let pages = [];
     let currentpage;
-    let orders = [];
+    icecream.orders = [];
     icecream.sorts = ["Vanilla", "Chocolate", "Yoghurt", "Coconut", "Cookies", "Strawberry", "Raspberry", "Peanutbutter", "Salted Caramel", "Pistachio"];
     icecream.sauces = ["None", "Chocolate", "Strawberry", "Caramel"];
     icecream.toppings = ["Chocolate Chips", "Cookie Crumples", "Whipped Cream", "Strawberrys", "Smarties"];
@@ -43,16 +43,16 @@ var icecream;
     }
     function createNewOrder() {
         icecream.ordercount += 1;
-        let order = new icecream.Order();
-        orders.push(order);
+        let order = { ordernumber: icecream.ordercount, container: "", scoops: [], sauce: "", toppings: "", price: 0 };
+        icecream.orders.push(order);
     }
     function chooseContainer(_event) {
         let target = _event.target;
         if (target.id == "cone") {
-            orders[icecream.ordercount].container = "Cone";
+            icecream.orders[icecream.ordercount].container = "Cone";
         }
         if (target.id == "cup") {
-            orders[icecream.ordercount].container = "Cup";
+            icecream.orders[icecream.ordercount].container = "Cup";
         }
         openDecisions();
     }
@@ -76,7 +76,7 @@ var icecream;
         }
         for (let i = 0; i < icecream.sauceinputs.length; i++) {
             if (icecream.sauceinputs[i].checked) {
-                orders[icecream.ordercount].sauce = icecream.sauces[i];
+                icecream.orders[icecream.ordercount].sauce = icecream.sauces[i];
                 if (icecream.sauceinputs[i].value == "None") {
                     sauceprice = 0;
                 }
@@ -91,7 +91,7 @@ var icecream;
             }
         }
         let sum = (scoopprice + toppingprice + sauceprice);
-        orders[icecream.ordercount].price = sum;
+        icecream.orders[icecream.ordercount].price = sum;
         updatePrice(scoopprice, sauceprice, toppingprice, sum);
     }
     function updatePrice(_scoopprice, _sauceprice, _toppingprice, _sum) {
@@ -110,15 +110,51 @@ var icecream;
         nextPage();
         document.getElementById("price").style.visibility = "hidden";
         saveOrder();
-        orders[icecream.ordercount].createDiv();
+        createDiv(icecream.orders[icecream.ordercount]);
     }
     icecream.openCart = openCart;
+    function createDiv(_order) {
+        let scoopstring = "";
+        for (let i = 0; i < _order.scoops.length; i++) {
+            if (i > 0) {
+                scoopstring += " / " + _order.scoops[i].name + ": " + _order.scoops[i].amount;
+            }
+            else {
+                scoopstring += +_order.scoops[i].name + ": " + _order.scoops[i].amount;
+            }
+        }
+        let div = document.createElement("div");
+        let h = document.createElement("h1");
+        h.innerText = "Order " + (_order.ordernumber + 1);
+        div.appendChild(h);
+        let coc = document.createElement("p");
+        coc.innerText = "Container: " + _order.container;
+        div.appendChild(coc);
+        let scoop = document.createElement("p");
+        scoop.innerText = "Scoops: " + scoopstring;
+        div.appendChild(scoop);
+        let sauce = document.createElement("p");
+        sauce.innerText = "Sauce: " + _order.sauce;
+        div.appendChild(sauce);
+        let toppings = document.createElement("p");
+        toppings.innerText = "Toppings: " + _order.toppings;
+        div.appendChild(toppings);
+        let price = document.createElement("p");
+        if (this.sauce == "None") {
+            price.innerText = "Price: " + _order.price + ".00€";
+        }
+        else {
+            price.innerText = "Price: " + _order.price + "0€";
+        }
+        div.appendChild(price);
+        document.getElementById("orders").appendChild(div);
+    }
     function saveOrder() {
         let allscoops = "";
         let alltoppings = "";
         for (let i = 0; i < icecream.sortinputs.length; i++) {
             if (icecream.selectedsorts[i] > 0) {
-                allscoops += +icecream.selectedsorts[i] + " " + icecream.sorts[i] + ", ";
+                icecream.orders[icecream.ordercount].scoops.push({ name: icecream.sorts[i], amount: icecream.selectedsorts[i] });
             }
         }
         for (let i = 0; i < icecream.toppinginputs.length; i++) {
@@ -126,8 +162,7 @@ var icecream;
                 alltoppings += icecream.toppinginputs[i].value + ", ";
             }
         }
-        orders[icecream.ordercount].scoops = allscoops;
-        orders[icecream.ordercount].toppings = alltoppings;
+        icecream.orders[icecream.ordercount].toppings = alltoppings;
     }
     function checkValidity() {
         let firstname = document.getElementById("firstname");
@@ -155,11 +190,24 @@ var icecream;
         else {
             alert("Your inputs on " + notvalid + " are not valid. Please check again!");
         }
+        gotoServerPage();
     }
     function nextPage() {
         pages[currentpage].style.visibility = "hidden";
         pages[currentpage + 1].style.visibility = "visible";
         currentpage += 1;
+    }
+    function gotoServerPage() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://localhost:8100", true);
+        xhr.addEventListener("readystatechange", onStateChange);
+        xhr.send(JSON.stringify(icecream.orders));
+    }
+    function onStateChange(_event) {
+        let xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            xhr.responseText;
+        }
     }
     function createPagesArray() {
         pages[0] = document.getElementById("startpage");
