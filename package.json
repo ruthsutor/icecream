@@ -1,11 +1,11 @@
 {
 	"name" : "NodeTest",
 	"version" : "0.0.1",
-	"description" : "first node test",
-	"author" : "Jirka Dell'Oro-Friedl'",
-	"main" : "NodeTest.js",
+	"description" : "icecream node",
+	"author" : "Ruth Sutor",
+	"main" : "NodeIcecream.js",
 	"scripts" : {
-		"start" : "node NodeTest.js"
+		"start" : "node NodeIcecream.js"
 	},
 	"engines" : {
 		"node" : "6.10.3"
