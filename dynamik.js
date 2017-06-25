@@ -206,7 +206,8 @@ var icecream;
     function onStateChange(_event) {
         let xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            xhr.responseText;
+            let div = document.getElementById("response");
+            div.innerHTML = xhr.responseText;
         }
     }
     function createPagesArray() {

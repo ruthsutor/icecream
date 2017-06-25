@@ -33,7 +33,11 @@
 	align-items: center;
 	justify-content: center;
 }
-
+html, #thankyou{
+	font-family: 'Raleway', sans-serif;
+	font-size: 12pt;
+	color: #000000;
+}
 fieldset {
 	width : 230px;
 }
@@ -54,7 +58,7 @@ input{
 	justify-content: center;
 }
 
-h1, legend, #thanks{
+h1, legend {
 	font-family: 'Amatic SC', cursive;
 	font-size: 25pt;
 	color:#00e68a;
@@ -105,3 +109,14 @@ button {
 	margin-right: 20px;
 }
 /*THANKS*/
+#thanks{
+	display: block;
+}
+h2{
+	font-family: 'Amatic SC', cursive;
+	font-size: 25pt;
+	color:#00e68a;
+}
+#thankyou{
+	text-align: center;
+}

@@ -30,6 +30,7 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
     });
 
     _request.on("end", function(): void {
+        console.log(rawData);
         data = JSON.parse(rawData.concat().toString());
         console.log(data);
 
@@ -41,12 +42,12 @@ function handleRequest(_request: Http.IncomingMessage, _response: Http.ServerRes
         _response.write("<h1>ordering confirmation</h1>");
         for (let i: number = 0; i < data.length; i++) {
             let scoopstring: string = "";
-            for (let i: number = 0; i < data[i].scoops.length; i++) {
+            for (let j: number = 0; j < data[i].scoops.length; j++) {
                 if (i > 0) {
-                    scoopstring += " / " + data[i].scoops[i].name + ": " + data[i].scoops[i].amount;
+                    scoopstring += " / " + data[i].scoops[j].name + ": " + data[i].scoops[j].amount;
                 }
                 else {
-                    scoopstring += + data[i].scoops[i].name + ": " + data[i].scoops[i].amount;
+                    scoopstring += + data[i].scoops[j].name + ": " + data[i].scoops[j].amount;
                 }
             }
             _response.write("<h2>Order " + data[i].ordernumber + "</h2>");

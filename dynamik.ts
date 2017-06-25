@@ -213,7 +213,8 @@ namespace icecream {
     function onStateChange(_event: Event): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
         if (xhr.readyState == XMLHttpRequest.DONE) {
-            xhr.responseText;
+            let div: HTMLDivElement = <HTMLDivElement>document.getElementById("response");
+            div.innerHTML = xhr.responseText;
         }
     }
     function createPagesArray(): void {

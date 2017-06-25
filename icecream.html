@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Montserrat:900" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Montserrat:900|Raleway" rel="stylesheet"> 
 <link rel="stylesheet" href="icecream.css">
 <script type="text/javascript" src="dynamik.js"></script>
 <script type="text/javascript" src="inputs.js"></script>
@@ -14,7 +14,8 @@
 	<h1 id="header">The Icecream Shop</h1>
 </header>
 <body>
-<form action="https://servertestruth.herokuapp.com" method="get">
+<!-- <form action="http://localhost:8100" method="post">  -->
+<!-- <form action="https://servertestruth.herokuapp.com" method="post"> -->
 <!-- STARTPAGE -->
 	<div id="startpage">
 		<button type="button" id="neworder">NEW ORDER</button>
@@ -65,17 +66,18 @@
 		<input type="text" name="street" placeholder="Streetname" required id="street"/>
 		<input type="text" name="streetnumber" pattern="[0-9]{.1}" placeholder="streetnumber" required id="streetnumber"/>
 		<input type="text" name="postcode" pattern="[0-9]{5}" placeholder="postcode" required id="postcode"/>
-        <input type="radio" name="group1" checked value="express" id="express"/>
+        <input type="radio" name="Delivery" checked value="express" id="express"/>
 		<label for="express">Express Delivery (1 day)</label>
-		<input type="radio" name="group1" value="standard" id="standard"/>
+		<input type="radio" name="Delivery" value="standard" id="standard"/>
 		<label for="standard">Standard Delivery (2-3 days)</label>
     </fieldset>
     <button id="commit">COMMIT TO BUY</button>
 	</div>
 <!-- THANKS -->
 	<div id="thanks">
-	<p>Thanks for your order!</p>
+	<p id="thankyou">Thanks for your order!</p>
+	<div id="response"></div>
 	</div>
-</form>	
+<!-- </form>  -->	
 </body>
 </html>

@@ -19,6 +19,7 @@ function handleRequest(_request, _response) {
         rawData.push(_chunk);
     });
     _request.on("end", function () {
+        console.log(rawData);
         data = JSON.parse(rawData.concat().toString());
         console.log(data);
         sendResponse();
@@ -29,12 +30,12 @@ function handleRequest(_request, _response) {
         _response.write("<h1>ordering confirmation</h1>");
         for (let i = 0; i < data.length; i++) {
             let scoopstring = "";
-            for (let i = 0; i < data[i].scoops.length; i++) {
+            for (let j = 0; j < data[i].scoops.length; j++) {
                 if (i > 0) {
-                    scoopstring += " / " + data[i].scoops[i].name + ": " + data[i].scoops[i].amount;
+                    scoopstring += " / " + data[i].scoops[j].name + ": " + data[i].scoops[j].amount;
                 }
                 else {
-                    scoopstring += +data[i].scoops[i].name + ": " + data[i].scoops[i].amount;
+                    scoopstring += +data[i].scoops[j].name + ": " + data[i].scoops[j].amount;
                 }
             }
             _response.write("<h2>Order " + data[i].ordernumber + "</h2>");
