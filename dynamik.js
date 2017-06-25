@@ -199,7 +199,7 @@ var icecream;
     }
     function gotoServerPage() {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://localhost:8100", true);
+        xhr.open("POST", "https://theicecreamshop.herokuapp.com", true);
         xhr.addEventListener("readystatechange", onStateChange);
         xhr.send(JSON.stringify(icecream.orders));
     }
